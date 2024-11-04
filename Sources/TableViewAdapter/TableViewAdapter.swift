@@ -149,11 +149,18 @@ extension TableViewAdapter: UITableViewDelegate {
 
         if let cell = cell as? TableViewAdapterCellProtocol {
             cell.actionClosure = cellInfo.actionClosure
+            cell.configureBefore(data: cellInfo.contentObj,
+                           subData: cellInfo.subData,
+                           tableView: tableView,
+                           indexPath: indexPath)
             cell.configure(data: cellInfo.contentObj,
                            subData: cellInfo.subData,
                            tableView: tableView,
-                           indexPath: indexPath,
-                           actionClosure: cellInfo.actionClosure)
+                           indexPath: indexPath)
+            cell.configureAfter(data: cellInfo.contentObj,
+                           subData: cellInfo.subData,
+                           tableView: tableView,
+                           indexPath: indexPath)
         }
 
         return cell
@@ -262,11 +269,18 @@ extension TableViewAdapter: UITableViewDelegate {
 
         if let cell = cell as? TableViewAdapterHeaderFooterProtocol {
             cell.actionClosure = cellInfo.actionClosure
+            cell.configureBefore(data: cellInfo.contentObj,
+                                 subData: cellInfo.subData,
+                                 tableView: tableView,
+                                 indexPath: IndexPath(row: 0, section: section))
             cell.configure(data: cellInfo.contentObj,
                            subData: cellInfo.subData,
                            tableView: tableView,
-                           indexPath: IndexPath(row: 0, section: section),
-                           actionClosure: cellInfo.actionClosure)
+                           indexPath: IndexPath(row: 0, section: section))
+            cell.configureAfter(data: cellInfo.contentObj,
+                                 subData: cellInfo.subData,
+                                 tableView: tableView,
+                                 indexPath: IndexPath(row: 0, section: section))
         }
 
         return cell
@@ -284,11 +298,18 @@ extension TableViewAdapter: UITableViewDelegate {
 
         if let cell = cell as? TableViewAdapterHeaderFooterProtocol {
             cell.actionClosure = cellInfo.actionClosure
+            cell.configureBefore(data: cellInfo.contentObj,
+                                 subData: cellInfo.subData,
+                                 tableView: tableView,
+                                 indexPath: IndexPath(row: 0, section: section))
             cell.configure(data: cellInfo.contentObj,
                            subData: cellInfo.subData,
                            tableView: tableView,
-                           indexPath: IndexPath(row: 0, section: section),
-                           actionClosure: cellInfo.actionClosure)
+                           indexPath: IndexPath(row: 0, section: section))
+            cell.configureAfter(data: cellInfo.contentObj,
+                                 subData: cellInfo.subData,
+                                 tableView: tableView,
+                                 indexPath: IndexPath(row: 0, section: section))
         }
 
         return cell

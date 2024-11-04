@@ -14,7 +14,7 @@ class TestHeaderFooterView: UITableViewHeaderFooterView, TableViewAdapterHeaderF
 
     var data: String = ""
 
-    func configure(data: Any?, subData: Any?, tableView: UITableView, indexPath: IndexPath, actionClosure: ActionClosure?) {
+    func configure(data: Any?, subData: Any?, tableView: UITableView, indexPath: IndexPath) {
         guard let data = data as? String else { return }
         self.data = data
         self.label.text = data
