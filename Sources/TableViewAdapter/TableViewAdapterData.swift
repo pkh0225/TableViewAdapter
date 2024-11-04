@@ -3,6 +3,7 @@
 
 import UIKit
 
+public typealias TVAData = TableViewAdapterData
 public typealias TVASectionInfo = TableViewAdapterData.SectionInfo
 public typealias TVACellInfo = TableViewAdapterData.CellInfo
 public typealias TVAHeaderFooterInfo = TableViewAdapterData.HeaderFooterInfo
