@@ -19,9 +19,9 @@ class MainViewController: UIViewController {
 
         let testData = TableViewAdapterData()
         for i in 0...10 {
-            let sectionInfo = TableViewAdapterSectionInfo()
+            let sectionInfo = TVASectionInfo()
             testData.sectionList.append(sectionInfo)
-            sectionInfo.header = TableViewAdapterHeaderFooterInfo(cellType: TestHeaderFooterView.self)
+            sectionInfo.header = TVAHeaderFooterInfo(cellType: TestHeaderFooterView.self)
                 .setContentObj("@@ header @@ \(i)\n1247\nasdighj")
                 .setActionClosure({ [weak self] (name, object) in
                     guard let self else { return }
@@ -30,7 +30,7 @@ class MainViewController: UIViewController {
                     self.alert(title: "", message: "\(object) : \(name)")
                 })
 
-            sectionInfo.footer = TableViewAdapterHeaderFooterInfo(cellType: TestHeaderFooterView.self)
+            sectionInfo.footer = TVAHeaderFooterInfo(cellType: TestHeaderFooterView.self)
                 .setContentObj(" --- footer --- \(i)\nasdlk;fj\n213p4987")
                 .setActionClosure({ [weak self] (name, object) in
                     guard let self else { return }
@@ -49,7 +49,7 @@ class MainViewController: UIViewController {
                     contentObj = "cell (\(i) : \(j))"
                 }
 
-                let cellInfo = TableViewAdapterCellInfo(cellType: TestTableViewCell.self)
+                let cellInfo = TVACellInfo(cellType: TestTableViewCell.self)
                     .setContentObj(contentObj)
                     .setActionClosure({ [weak self] (name, object) in
                         guard let self else { return }

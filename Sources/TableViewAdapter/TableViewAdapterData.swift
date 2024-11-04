@@ -3,9 +3,9 @@
 
 import UIKit
 
-public typealias TableViewAdapterSectionInfo = TableViewAdapterData.SectionInfo
-public typealias TableViewAdapterCellInfo = TableViewAdapterData.CellInfo
-public typealias TableViewAdapterHeaderFooterInfo = TableViewAdapterData.HeaderFooterInfo
+public typealias TVASectionInfo = TableViewAdapterData.SectionInfo
+public typealias TVACellInfo = TableViewAdapterData.CellInfo
+public typealias TVAHeaderFooterInfo = TableViewAdapterData.HeaderFooterInfo
 
 
 // MARK: - UITableViewViewAdapterData
