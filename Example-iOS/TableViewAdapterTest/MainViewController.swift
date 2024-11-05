@@ -14,9 +14,6 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let nib = UINib(nibName: "TestHeaderFooterView", bundle: nil)
-        tableView.register(nib, forHeaderFooterViewReuseIdentifier: "TestHeaderFooterView")
-
         let testData = TableViewAdapterData()
         for i in 0...10 {
             let sectionInfo = TVASectionInfo()

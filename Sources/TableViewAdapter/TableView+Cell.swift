@@ -13,6 +13,20 @@ private var cacheNibs = {
     return cache
 }()
 
+public func isXibFileExists(_ fileName: String, bundle: Bundle?) -> Bool {
+    var aBundle = Bundle.main
+    if let bundle {
+        aBundle = bundle
+    }
+
+    if let path: String = aBundle.path(forResource: fileName, ofType: "nib") {
+        if FileManager.default.fileExists(atPath: path) {
+            return true
+        }
+    }
+    return false
+}
+
 extension UITableView {
     private struct AssociatedKeys {
         static var registerCellName: UInt8 = 0
@@ -58,20 +72,6 @@ extension UITableView {
         set {
             objc_setAssociatedObject(self, &AssociatedKeys.registerFooterName, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
-    }
-
-    private func isXibFileExists(_ fileName: String, bundle: Bundle?) -> Bool {
-        var aBundle = Bundle.main
-        if let bundle {
-            aBundle = bundle
-        }
-
-        if let path: String = aBundle.path(forResource: fileName, ofType: "nib") {
-            if FileManager.default.fileExists(atPath: path) {
-                return true
-            }
-        }
-        return false
     }
 
     public func registerDefaultCell(bundle: Bundle? = nil) {
