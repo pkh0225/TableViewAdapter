@@ -1,3 +1,6 @@
-
-/Example-iOS/TableViewAdapterTest.xcodeproj/project.xcworkspace/xcuserdata
-Example-iOS/TableViewAdapterTest.xcodeproj/project.xcworkspace/xcuserdata/pkh0225.xcuserdatad/UserInterfaceState.xcuserstate
+.DS_Store
+/.build
+/Packages
+/*.xcodeproj
+xcuserdata/
+DerivedData/

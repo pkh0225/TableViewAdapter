@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TestHeaderFooterView: UITableViewHeaderFooterView, TableViewAdapterHeaderFooterProtocol {
+class TestHeaderFooterView: UITableViewHeaderFooterView, TVAHeadFooterFProtocol {
     var actionClosure: ((_ name: String, _ object: Any?) -> Void)?
     
     @IBOutlet weak var label: UILabel!

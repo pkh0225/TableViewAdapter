@@ -8,7 +8,8 @@
 import UIKit
 
 public let SectionInsetNotSupport = UIEdgeInsets(top: -9999, left: -9999, bottom: -9999, right: -9999)
-
+public typealias TVACellProtocol = TableViewAdapterCellProtocol
+public typealias TVAHeadFooterFProtocol = TableViewAdapterHeaderFooterProtocol
 
 public protocol TableViewAdapterCellProtocol: UITableViewCell {
     var actionClosure: ((_ name: String, _ object: Any?) -> Void)? { get set }
@@ -53,7 +54,7 @@ public extension TableViewAdapterHeaderFooterProtocol {
     func didEndDisplaying(tableView: UITableView, indexPath: IndexPath) {}
 }
 
-
+@MainActor
 fileprivate var CacheViewXibs = {
     let cache = NSCache<NSString, UIView>()
     cache.countLimit = 200
