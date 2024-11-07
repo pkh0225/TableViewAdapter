@@ -9,12 +9,13 @@ import UIKit
 // MARK: - TableViewAdapter
 public class TableViewAdapter: NSObject {
     public var isDebugMode: Bool = false
-    public static let CHECK_Y_MORE_SIZE: CGFloat = UISCREEN_HEIGHT * 4
-    public static let CHECK_X_MORE_SIZE: CGFloat = UISCREEN_WIDTH * 2
+    public static var CHECK_Y_MORE_SIZE: CGFloat {
+        UIScreen.main.bounds.height * 4
+    }
+    public static var CHECK_X_MORE_SIZE: CGFloat {
+        UIScreen.main.bounds.width * 2
+    }
 
-    private var checkBeforeHeight: CGFloat = 0.0
-    private var checkBeforeHeightIndex: Int = -1
-    private var isCheckBeforeHeight = false
     weak var tableView: UITableView? {
         didSet {
             tableView?.delegate = self
@@ -22,9 +23,7 @@ public class TableViewAdapter: NSObject {
         }
     }
 
-    var didScrollCallback: [ScrollViewCallback] = []
-    var willBeginDraggingCallback: [ScrollViewCallback] = []
-    var didEndDeceleratingCallback: [ScrollViewCallback] = []
+    weak var scrollViewDelegate: UIScrollViewDelegate?
 
     var data: TableViewAdapterData?
     var hasNext: Bool = false
@@ -115,8 +114,6 @@ public class TableViewAdapter: NSObject {
 extension TableViewAdapter: UITableViewDataSource {
     public func numberOfSections(in tableView: UITableView) -> Int {
         guard let data else { return 0 }
-        checkBeforeHeight = -1
-        checkBeforeHeightIndex = -1
         registerCell(in: tableView)
 
         if data.sectionList.count == 0 && hasNext {
@@ -132,10 +129,7 @@ extension TableViewAdapter: UITableViewDataSource {
         guard let sectionInfo = data.sectionList[safe: section] else { return 0 }
         return sectionInfo.cells.count
     }
-}
 
-extension TableViewAdapter: UITableViewDelegate {
-    //MARK: - UITableViewDelegate - Cell
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         func defaultReturn() -> UITableViewCell { return UITableViewCell() }
         guard let cellInfo = self.getCellInfo(indexPath) else { return defaultReturn() }
@@ -165,7 +159,10 @@ extension TableViewAdapter: UITableViewDelegate {
 
         return cell
     }
+}
 
+//MARK: - UITableViewDelegate - Cell
+extension TableViewAdapter: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let cellInfo = self.getCellInfo(indexPath) else { return 0 }
 
@@ -344,32 +341,55 @@ extension TableViewAdapter: UITableViewDelegate {
 //MARK: - UIScrollViewDelegate
 extension TableViewAdapter: UIScrollViewDelegate {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        print("scrollView.contentOffset.x = \(scrollView.contentOffset.x)")
-        guard scrollView.contentSize != .zero else { return }
-        guard let scrollView = scrollView as? UICollectionView else { return }
-        for callback in self.didScrollCallback {
-            callback(scrollView)
-        }
+        self.scrollViewDelegate?.scrollViewDidScroll?(scrollView)
+    }
+
+    public func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        self.scrollViewDelegate?.scrollViewDidZoom?(scrollView)
     }
 
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        for callback in self.willBeginDraggingCallback {
-            callback(scrollView)
-        }
+        self.scrollViewDelegate?.scrollViewWillBeginDragging?(scrollView)
+    }
+
+    public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        self.scrollViewDelegate?.scrollViewWillEndDragging?(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
     }
 
     public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-//        print("scrollViewDidEndDragging willDecelerate = \(decelerate)")
-        if !decelerate {
-            scrollViewDidEndDecelerating(scrollView)
-        }
+        self.scrollViewDelegate?.scrollViewDidEndDragging?(scrollView, willDecelerate: decelerate)
     }
 
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-//        print("scrollViewDidEndDecelerating")
-        for callback in self.didEndDeceleratingCallback {
-            callback(scrollView)
-        }
+        self.scrollViewDelegate?.scrollViewDidEndDecelerating?(scrollView)
+    }
+
+    public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        self.scrollViewDelegate?.scrollViewDidEndScrollingAnimation?(scrollView)
+    }
+
+    public func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return self.scrollViewDelegate?.viewForZooming?(in: scrollView)
+    }
+
+    public func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
+        self.scrollViewDelegate?.scrollViewWillBeginZooming?(scrollView, with: view)
+    }
+
+    public func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+        self.scrollViewDelegate?.scrollViewDidEndZooming?(scrollView, with: view, atScale: scale)
+    }
+
+    public func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
+        return self.scrollViewDelegate?.scrollViewShouldScrollToTop?(scrollView) ?? true
+    }
+
+    public func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
+        self.scrollViewDelegate?.scrollViewDidScrollToTop?(scrollView)
+    }
+
+    public func scrollViewDidChangeAdjustedContentInset(_ scrollView: UIScrollView) {
+        self.scrollViewDelegate?.scrollViewDidChangeAdjustedContentInset?(scrollView)
     }
 }
 

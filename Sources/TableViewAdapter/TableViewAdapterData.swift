@@ -17,7 +17,7 @@ public class TableViewAdapterData: NSObject {
         public var subData: [String: Any?]?
         public var cellType: TableViewAdapterCellProtocol.Type
         public var sizeClosure: (() -> CGFloat)?
-        public var actionClosure: ActionClosure?
+        public var actionClosure: ((_ name: String, _ object: Any?) -> Void)?
 
         public init(cellType: TableViewAdapterCellProtocol.Type) {
             self.cellType = cellType
@@ -29,7 +29,7 @@ public class TableViewAdapterData: NSObject {
         public var subData: [String: Any?]?
         public var cellType: TableViewAdapterHeaderFooterProtocol.Type
         public var sizeClosure: (() -> CGFloat)?
-        public var actionClosure: ActionClosure?
+        public var actionClosure: ((_ name: String, _ object: Any?) -> Void)?
 
         public init(cellType: TableViewAdapterHeaderFooterProtocol.Type) {
             self.cellType = cellType
@@ -76,7 +76,7 @@ extension TableViewAdapterData.CellInfo {
         return self
     }
 
-    public func setActionClosure(_ actionClosure: ActionClosure? = nil) -> Self {
+    public func setActionClosure(_ actionClosure: ((_ name: String, _ object: Any?) -> Void)? = nil) -> Self {
         self.actionClosure = actionClosure
         return self
     }
@@ -103,7 +103,7 @@ extension TableViewAdapterData.HeaderFooterInfo {
         return self
     }
 
-    public func setActionClosure(_ actionClosure: ActionClosure? = nil) -> Self {
+    public func setActionClosure(_ actionClosure: ((_ name: String, _ object: Any?) -> Void)? = nil) -> Self {
         self.actionClosure = actionClosure
         return self
     }

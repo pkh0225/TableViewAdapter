@@ -8,18 +8,10 @@
 import UIKit
 
 public let SectionInsetNotSupport = UIEdgeInsets(top: -9999, left: -9999, bottom: -9999, right: -9999)
-public let UISCREEN_WIDTH = UIScreen.main.bounds.width
-public let UISCREEN_HEIGHT = UIScreen.main.bounds.height
-
-public typealias VoidClosure = () -> Void
-public typealias ActionClosure = (_ name: String, _ object: Any?) -> Void
-public typealias ScrollViewCallback = (_ scrollView: UIScrollView) -> Void
-public typealias TableViewDisplayClosure = (_ collectionView: UICollectionView,_ cell: UITableViewCell,_ indexPath: IndexPath) -> Void
-public typealias TableViewDisplaySupplementaryViewClosure = (_ collectionView: UITableView, _ view: UIView, _ elementKind: String, _ indexPath: IndexPath) -> Void
 
 
 public protocol TableViewAdapterCellProtocol: UITableViewCell {
-    var actionClosure: ActionClosure? { get set }
+    var actionClosure: ((_ name: String, _ object: Any?) -> Void)? { get set }
 
     static func getSize(data: Any?, width: CGFloat, tableView: UITableView, indexPath: IndexPath) -> CGFloat
     func configureBefore(data: Any?, subData: Any?, tableView: UITableView, indexPath: IndexPath)
@@ -44,7 +36,7 @@ public extension TableViewAdapterCellProtocol {
 }
 
 public protocol TableViewAdapterHeaderFooterProtocol: UITableViewHeaderFooterView {
-    var actionClosure: ActionClosure? { get set }
+    var actionClosure: ((_ name: String, _ object: Any?) -> Void)? { get set }
 
     static func getSize(data: Any?, width: CGFloat, tableView: UITableView, indexPath: IndexPath) -> CGFloat
     func configureBefore(data: Any?, subData: Any?, tableView: UITableView, indexPath: IndexPath)

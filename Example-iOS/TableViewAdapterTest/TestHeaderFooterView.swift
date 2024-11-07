@@ -8,7 +8,7 @@
 import UIKit
 
 class TestHeaderFooterView: UITableViewHeaderFooterView, TableViewAdapterHeaderFooterProtocol {
-    var actionClosure: ActionClosure?
+    var actionClosure: ((_ name: String, _ object: Any?) -> Void)?
     
     @IBOutlet weak var label: UILabel!
 

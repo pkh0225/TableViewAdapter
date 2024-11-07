@@ -37,16 +37,13 @@ extension UITableView {
         }
     }
 
-    public func didScrollCallback(_ callback: @escaping ScrollViewCallback) {
-        adapter.didScrollCallback.append(callback)
-    }
-
-    public func didEndDeceleratingCallback(_ callback: @escaping ScrollViewCallback) {
-        adapter.didEndDeceleratingCallback.append(callback)
-    }
-
-    public func willBeginDraggingCallback(_ callback: @escaping ScrollViewCallback) {
-        adapter.willBeginDraggingCallback.append(callback)
+    public var scrollViewDelegate: UIScrollViewDelegate? {
+        get {
+            return self.adapter.scrollViewDelegate
+        }
+        set {
+            self.adapter.scrollViewDelegate = newValue
+        }
     }
 
     public var adapterHasNext: Bool {

@@ -8,7 +8,7 @@
 import UIKit
 
 class TestTableViewCell: UITableViewCell, TableViewAdapterCellProtocol {
-    var actionClosure: ActionClosure?
+    var actionClosure: ((String, Any?) -> Void)?
 
     @IBOutlet weak var label: UILabel!
 
