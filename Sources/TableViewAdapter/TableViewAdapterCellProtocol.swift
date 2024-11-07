@@ -47,10 +47,6 @@ public protocol TableViewAdapterHeaderFooterProtocol: UITableViewHeaderFooterVie
 }
 
 public extension TableViewAdapterHeaderFooterProtocol {
-    static func getSize(data: Any?, width: CGFloat, tableView: UITableView, indexPath: IndexPath) -> CGFloat {
-        return self.fromXibSize().height
-    }
-
     func configureBefore(data: Any?, subData: Any?, tableView: UITableView, indexPath: IndexPath) {}
     func configureAfter(data: Any?, subData: Any?, tableView: UITableView, indexPath: IndexPath) {}
     func willDisplay(tableView: UITableView, indexPath: IndexPath) {}
