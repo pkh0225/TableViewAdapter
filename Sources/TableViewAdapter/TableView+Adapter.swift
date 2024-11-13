@@ -9,7 +9,7 @@ import UIKit
 // MARK: - UICollectionView Extension
 extension UITableView {
     private struct AssociatedKeys {
-        static var tableViewAdapter: UInt8 = 0
+        nonisolated(unsafe) static var tableViewAdapter: UInt8 = 0
     }
 
     public var adapter: TableViewAdapter {

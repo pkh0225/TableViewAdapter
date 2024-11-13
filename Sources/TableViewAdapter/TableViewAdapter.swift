@@ -7,6 +7,7 @@
 import UIKit
 
 // MARK: - TableViewAdapter
+@MainActor
 public class TableViewAdapter: NSObject {
     public var isDebugMode: Bool = false
     public static var CHECK_Y_MORE_SIZE: CGFloat {
