@@ -7,24 +7,24 @@
 
 import UIKit
 
-final class CacheManager {
-    nonisolated(unsafe) static let shared = CacheManager()
-    private var cache = NSCache<NSString, UINib>()
+final class CacheManager: Sendable {
+    static let shared = CacheManager()
+    nonisolated(unsafe) private var cache = NSCache<NSString, UINib>()
     private let queue = DispatchQueue(label: "com.cacheManager.queue")
 
     init() {
-        cache.countLimit = 500
+        self.cache.countLimit = 500
     }
 
     func setObject(_ obj: UINib, forKey key: String) {
-        queue.sync {
-            cache.setObject(obj, forKey: key as NSString)
+        self.queue.async(flags: .barrier) {
+            self.cache.setObject(obj, forKey: key as NSString)
         }
     }
 
     func object(forKey key: String) -> UINib? {
-        return queue.sync {
-            cache.object(forKey: key as NSString)
+        return self.queue.sync {
+            self.cache.object(forKey: key as NSString)
         }
     }
 }
