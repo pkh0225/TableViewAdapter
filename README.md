@@ -6,7 +6,7 @@
 ## NO Cell Register
 
 <br>
-<img alt="timetable" src="https://github.com/pkh0225/TableViewAdapter/blob/master/ScreenShot.png" width="333">
+<img alt="timetable" src="https://github.com/pkh0225/TableViewAdapter/blob/main/ScreenShot.png" width="333">
 
 ### ↑↑ please refer test sample project 👾👾
 
