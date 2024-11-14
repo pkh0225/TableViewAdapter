@@ -11,6 +11,7 @@ public let SectionInsetNotSupport = UIEdgeInsets(top: -9999, left: -9999, bottom
 public typealias TVACellProtocol = TableViewAdapterCellProtocol
 public typealias TVAHeadFooterFProtocol = TableViewAdapterHeaderFooterProtocol
 
+@MainActor
 public protocol TableViewAdapterCellProtocol: UITableViewCell {
     var actionClosure: ((_ name: String, _ object: Any?) -> Void)? { get set }
 
@@ -36,6 +37,7 @@ public extension TableViewAdapterCellProtocol {
     func didUnhighlight(tableView: UITableView, indexPath: IndexPath) {}
 }
 
+@MainActor
 public protocol TableViewAdapterHeaderFooterProtocol: UITableViewHeaderFooterView {
     var actionClosure: ((_ name: String, _ object: Any?) -> Void)? { get set }
 
@@ -62,7 +64,6 @@ fileprivate var CacheViewXibs = {
 }()
 
 public extension UIView {
-
     class func fromXib(cache: Bool = false) -> Self {
         return fromXib(cache: cache, as: self)
     }
