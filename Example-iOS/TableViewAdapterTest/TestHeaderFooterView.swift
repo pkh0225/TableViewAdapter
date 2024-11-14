@@ -14,10 +14,16 @@ class TestHeaderFooterView: UITableViewHeaderFooterView, TVAHeadFooterFProtocol 
 
     var data: String = ""
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+    }
+
     func configure(data: Any?, subData: Any?, tableView: UITableView, indexPath: IndexPath) {
         guard let data = data as? String else { return }
         self.data = data
         self.label.text = data
+        self.contentView.backgroundColor = #colorLiteral(red: 0.9060257077, green: 1, blue: 0.8165706992, alpha: 1)
     }
 
     func didSelect(tableView: UITableView, indexPath: IndexPath) {
