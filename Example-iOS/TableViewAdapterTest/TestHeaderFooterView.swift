@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import TableViewAdapter
 
 class TestHeaderFooterView: UITableViewHeaderFooterView, TVAHeadFooterFProtocol {
     var actionClosure: ((_ name: String, _ object: Any?) -> Void)?

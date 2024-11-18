@@ -7,20 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		20D7E38B2CC88F2900556DCD /* TableViewAdapterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D7E3882CC88F2900556DCD /* TableViewAdapterData.swift */; };
-		20D7E38D2CC8A48D00556DCD /* TableViewAdapterCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D7E38C2CC8A47B00556DCD /* TableViewAdapterCellProtocol.swift */; };
-		20D7E38F2CC8A77400556DCD /* TableView+Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D7E38E2CC8A76B00556DCD /* TableView+Cell.swift */; };
-		20D7E3912CC8C4F200556DCD /* TableViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D7E3902CC8C4EC00556DCD /* TableViewAdapter.swift */; };
-		20D7E3AA2CC8DBED00556DCD /* TableView+Adapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D7E3A92CC8DBE300556DCD /* TableView+Adapter.swift */; };
+		209229572CEAFDBB00E4B140 /* TableViewAdapter in Frameworks */ = {isa = PBXBuildFile; productRef = 209229562CEAFDBB00E4B140 /* TableViewAdapter */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		20D7E3702CC88EFA00556DCD /* TableViewAdapterTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableViewAdapterTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		20D7E3882CC88F2900556DCD /* TableViewAdapterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewAdapterData.swift; sourceTree = "<group>"; };
-		20D7E38C2CC8A47B00556DCD /* TableViewAdapterCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewAdapterCellProtocol.swift; sourceTree = "<group>"; };
-		20D7E38E2CC8A76B00556DCD /* TableView+Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableView+Cell.swift"; sourceTree = "<group>"; };
-		20D7E3902CC8C4EC00556DCD /* TableViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewAdapter.swift; sourceTree = "<group>"; };
-		20D7E3A92CC8DBE300556DCD /* TableView+Adapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableView+Adapter.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -49,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				209229572CEAFDBB00E4B140 /* TableViewAdapter in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,7 +50,6 @@
 		20D7E3672CC88EFA00556DCD = {
 			isa = PBXGroup;
 			children = (
-				20D7E38A2CC88F2900556DCD /* Sources */,
 				20D7E3722CC88EFA00556DCD /* TableViewAdapterTest */,
 				20D7E3712CC88EFA00556DCD /* Products */,
 			);
@@ -71,27 +62,6 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
-		};
-		20D7E3892CC88F2900556DCD /* TableViewAdapter */ = {
-			isa = PBXGroup;
-			children = (
-				20D7E3A92CC8DBE300556DCD /* TableView+Adapter.swift */,
-				20D7E3902CC8C4EC00556DCD /* TableViewAdapter.swift */,
-				20D7E38E2CC8A76B00556DCD /* TableView+Cell.swift */,
-				20D7E3882CC88F2900556DCD /* TableViewAdapterData.swift */,
-				20D7E38C2CC8A47B00556DCD /* TableViewAdapterCellProtocol.swift */,
-			);
-			path = TableViewAdapter;
-			sourceTree = "<group>";
-		};
-		20D7E38A2CC88F2900556DCD /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				20D7E3892CC88F2900556DCD /* TableViewAdapter */,
-			);
-			name = Sources;
-			path = /Users/pkh0225/github/TableViewAdapter/Sources;
-			sourceTree = "<absolute>";
 		};
 /* End PBXGroup section */
 
@@ -113,6 +83,7 @@
 			);
 			name = TableViewAdapterTest;
 			packageProductDependencies = (
+				209229562CEAFDBB00E4B140 /* TableViewAdapter */,
 			);
 			productName = TableViewAdapterTest;
 			productReference = 20D7E3702CC88EFA00556DCD /* TableViewAdapterTest.app */;
@@ -142,6 +113,9 @@
 			);
 			mainGroup = 20D7E3672CC88EFA00556DCD;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				209229552CEAFDBB00E4B140 /* XCLocalSwiftPackageReference "../../TableViewAdapter" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 20D7E3712CC88EFA00556DCD /* Products */;
 			projectDirPath = "";
@@ -167,11 +141,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20D7E38F2CC8A77400556DCD /* TableView+Cell.swift in Sources */,
-				20D7E3AA2CC8DBED00556DCD /* TableView+Adapter.swift in Sources */,
-				20D7E38B2CC88F2900556DCD /* TableViewAdapterData.swift in Sources */,
-				20D7E3912CC8C4F200556DCD /* TableViewAdapter.swift in Sources */,
-				20D7E38D2CC8A48D00556DCD /* TableViewAdapterCellProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,7 +171,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.beta.test.TableViewAdapterTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -231,7 +200,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.beta.test.TableViewAdapterTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -377,6 +346,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		209229552CEAFDBB00E4B140 /* XCLocalSwiftPackageReference "../../TableViewAdapter" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../TableViewAdapter;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		209229562CEAFDBB00E4B140 /* TableViewAdapter */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TableViewAdapter;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 20D7E3682CC88EFA00556DCD /* Project object */;
 }

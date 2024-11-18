@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import TableViewAdapter
 
 class TestTableViewCell: UITableViewCell, TVACellProtocol {
     var actionClosure: ((String, Any?) -> Void)?
