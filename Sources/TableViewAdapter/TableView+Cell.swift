@@ -7,29 +7,16 @@
 
 import UIKit
 
-final class CacheManager: Sendable {
-    static let shared = CacheManager()
-    nonisolated(unsafe) private var cache = NSCache<NSString, UINib>()
-    private let queue = DispatchQueue(label: "com.cacheManager.queue")
-
-    init() {
-        self.cache.countLimit = 500
-    }
-
-    func setObject(_ obj: UINib, forKey key: String) {
-        self.queue.async(flags: .barrier) {
-            self.cache.setObject(obj, forKey: key as NSString)
-        }
-    }
-
-    func object(forKey key: String) -> UINib? {
-        return self.queue.sync {
-            self.cache.object(forKey: key as NSString)
-        }
-    }
+@MainActor
+class CacheManager {
+    static var cache: NSCache<NSString, UINib> = {
+        var c = NSCache<NSString, UINib>()
+        c.countLimit = 500
+        return c
+    }()
 }
 
-public func isXibFileExists(_ fileName: String, bundle: Bundle?) -> Bool {
+func isXibFileExists(_ fileName: String, bundle: Bundle?) -> Bool {
     var aBundle = Bundle.main
     if let bundle {
         aBundle = bundle
@@ -206,12 +193,12 @@ extension UITableView {
     }
 
     private func getNib(className: String, bundle: Bundle? = nil) -> UINib {
-        if let nib = CacheManager.shared.object(forKey: className) {
+        if let nib = CacheManager.cache.object(forKey: className as NSString) {
             return nib
         }
 
         let nib = UINib(nibName: className, bundle: bundle)
-        CacheManager.shared.setObject(nib, forKey: className)
+        CacheManager.cache.setObject(nib, forKey: className as NSString)
         return nib
     }
 

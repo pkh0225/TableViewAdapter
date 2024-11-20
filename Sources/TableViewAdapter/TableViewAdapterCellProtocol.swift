@@ -75,12 +75,12 @@ public class ViewCacheManager {
     }
 }
 
-extension UIView {
-    class func fromXib(cache: Bool = false) -> Self {
+extension TableViewAdapterCellProtocol where Self: UIView {
+    public static func fromXib(cache: Bool = false) -> Self {
         return fromXib(cache: cache, as: self)
     }
 
-    private class func fromXib<T>(cache: Bool = false, as type: T.Type) -> T {
+    private static func fromXib<T>(cache: Bool = false, as type: T.Type) -> T {
         if cache, let view = ViewCacheManager.cacheViewNibs.object(forKey: self.className as NSString) {
             return view as! T
         }
@@ -102,7 +102,39 @@ extension UIView {
         fatalError("\(className) XIB File Not Exist")
     }
 
-    public class func fromXibSize() -> CGSize {
+    private static func fromXibSize() -> CGSize {
+        return fromXib(cache: true).frame.size
+    }
+}
+
+extension TableViewAdapterHeaderFooterProtocol where Self: UIView {
+    static func fromXib(cache: Bool = false) -> Self {
+        return fromXib(cache: cache, as: self)
+    }
+
+    private static func fromXib<T>(cache: Bool = false, as type: T.Type) -> T {
+        if cache, let view = ViewCacheManager.cacheViewNibs.object(forKey: self.className as NSString) {
+            return view as! T
+        }
+        else if let nib = ViewCacheManager.cacheNibs.object(forKey: self.className as NSString) {
+            return nib.instantiate(withOwner: nil, options: nil).first as! T
+        }
+        else if let path: String = Bundle.main.path(forResource: className, ofType: "nib") {
+            if FileManager.default.fileExists(atPath: path) {
+                let nib = UINib(nibName: self.className, bundle: nil)
+                let view = nib.instantiate(withOwner: nil, options: nil).first as! T
+
+                ViewCacheManager.cacheNibs.setObject(nib, forKey: self.className as NSString)
+                if cache {
+                    ViewCacheManager.cacheViewNibs.setObject(view as! UIView, forKey: self.className as NSString)
+                }
+                return view
+            }
+        }
+        fatalError("\(className) XIB File Not Exist")
+    }
+
+    public static func fromXibSize() -> CGSize {
         return fromXib(cache: true).frame.size
     }
 }
