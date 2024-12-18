@@ -19,18 +19,18 @@ class MainViewController: UIViewController {
         for i in 0...10 {
             let sectionInfo = TVASectionInfo()
             testData.sectionList.append(sectionInfo)
-            sectionInfo.header = TVAHeaderFooterInfo(cellType: TestHeaderFooterView.self)
-                .setContentObj("@@ header @@ \(i)\n1247\nasdighj")
-                .setActionClosure({ [weak self] (name, object) in
+            sectionInfo.header = TVAHFInfo(TestHeaderFooterView.self)
+                .contentObj("@@ header @@ \(i)\n1247\nasdighj")
+                .actionClosure({ [weak self] (name, object) in
                     guard let self else { return }
                     guard let object = object else { return }
 
                     self.alert(title: "", message: "\(object) : \(name)")
                 })
 
-            sectionInfo.footer = TVAHeaderFooterInfo(cellType: TestHeaderFooterView.self)
-                .setContentObj(" --- footer --- \(i)\nasdlk;fj\n213p4987")
-                .setActionClosure({ [weak self] (name, object) in
+            sectionInfo.footer = TVAHFInfo(TestHeaderFooterView.self)
+                .contentObj(" --- footer --- \(i)\nasdlk;fj\n213p4987")
+                .actionClosure({ [weak self] (name, object) in
                     guard let self else { return }
                     guard let object = object else { return }
                     self.alert(title: "", message: "\(object) : \(name)")
@@ -47,9 +47,9 @@ class MainViewController: UIViewController {
                     contentObj = "cell (\(i) : \(j))"
                 }
 
-                let cellInfo = TVACellInfo(cellType: TestTableViewCell.self)
-                    .setContentObj(contentObj)
-                    .setActionClosure({ [weak self] (name, object) in
+                let cellInfo = TVACellInfo(TestTableViewCell.self)
+                    .contentObj(contentObj)
+                    .actionClosure({ [weak self] (name, object) in
                         guard let self else { return }
                         guard let object = object else { return }
                         self.alert(title: name, message: "\(object)")
