@@ -9,7 +9,7 @@ import UIKit
 
 public let SectionInsetNotSupport = UIEdgeInsets(top: -9999, left: -9999, bottom: -9999, right: -9999)
 public typealias TVACellProtocol = TableViewAdapterCellProtocol
-public typealias TVAHeadFooterFProtocol = TableViewAdapterHeaderFooterProtocol
+public typealias TVAHeadFooterProtocol = TableViewAdapterHeaderFooterProtocol
 
 @MainActor
 public protocol TableViewAdapterCellProtocol: UITableViewCell {
