@@ -52,30 +52,41 @@ public class TableViewAdapterData: NSObject {
     }
 
     public var sectionList = [SectionInfo]()
+
+    @discardableResult
+    public func addScetion(_ section: SectionInfo) -> Self {
+        self.sectionList.append(section)
+        return self
+    }
 }
 
 
 extension TableViewAdapterData.CellInfo {
+    @discardableResult
     public func contentObj(_ contentObj: Any?) -> Self {
         self.contentObj = contentObj
         return self
     }
 
+    @discardableResult
     public func subData(_ subData: [String: Any?]?) -> Self {
         self.subData = subData
         return self
     }
 
+    @discardableResult
     public func cellType(_ cellType: TableViewAdapterCellProtocol.Type) -> Self {
         self.cellType = cellType
         return self
     }
 
+    @discardableResult
     public func sizeClosure(_ sizeClosure: (() -> CGFloat)? = nil) -> Self {
         self.sizeClosure = sizeClosure
         return self
     }
 
+    @discardableResult
     public func actionClosure(_ actionClosure: ((_ name: String, _ object: Any?) -> Void)? = nil) -> Self {
         self.actionClosure = actionClosure
         return self
@@ -83,26 +94,31 @@ extension TableViewAdapterData.CellInfo {
 }
 
 extension TableViewAdapterData.HeaderFooterInfo {
+    @discardableResult
     public func contentObj(_ contentObj: Any?) -> Self {
         self.contentObj = contentObj
         return self
     }
 
+    @discardableResult
     public func subData(_ subData: [String: Any?]?) -> Self {
         self.subData = subData
         return self
     }
 
+    @discardableResult
     public func cellType(_ cellType: TableViewAdapterHeaderFooterProtocol.Type) -> Self {
         self.cellType = cellType
         return self
     }
 
+    @discardableResult
     public func sizeClosure(_ sizeClosure: (() -> CGFloat)? = nil) -> Self {
         self.sizeClosure = sizeClosure
         return self
     }
 
+    @discardableResult
     public func actionClosure(_ actionClosure: ((_ name: String, _ object: Any?) -> Void)? = nil) -> Self {
         self.actionClosure = actionClosure
         return self
@@ -110,26 +126,37 @@ extension TableViewAdapterData.HeaderFooterInfo {
 }
 
 extension TableViewAdapterData.SectionInfo {
+    @discardableResult
     public func header(_ cellInfo: TableViewAdapterData.HeaderFooterInfo) -> Self {
         self.header = cellInfo
         return self
     }
 
+    @discardableResult
     public func footer(_ cellInfo: TableViewAdapterData.HeaderFooterInfo) -> Self {
         self.footer = cellInfo
         return self
     }
 
+    @discardableResult
     public func cells(_ cells: [TableViewAdapterData.CellInfo]) -> Self {
         self.cells = cells
         return self
     }
 
+    @discardableResult
+    public func addCell(_ cell: TableViewAdapterData.CellInfo) -> Self {
+        self.cells.append(cell)
+        return self
+    }
+
+    @discardableResult
     public func dataType(_ type: String) -> Self {
         self.dataType = type
         return self
     }
 
+    @discardableResult
     public func indexPath(_ indexPath: IndexPath) -> Self {
         self.indexPath = indexPath
         return self

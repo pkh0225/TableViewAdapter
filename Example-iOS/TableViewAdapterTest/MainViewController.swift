@@ -14,11 +14,11 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.isUsedCacheSize = true
 
         let testData = TableViewAdapterData()
         for i in 0...10 {
             let sectionInfo = TVASectionInfo()
-            testData.sectionList.append(sectionInfo)
             sectionInfo.header = TVAHFInfo(TestHeaderFooterView.self)
                 .contentObj("@@ header @@ \(i)\n1247\nasdighj")
                 .actionClosure({ [weak self] (name, object) in
@@ -55,14 +55,13 @@ class MainViewController: UIViewController {
                         self.alert(title: name, message: "\(object)")
                     })
 
-                sectionInfo.cells.append(cellInfo)
+                sectionInfo.addCell(cellInfo)
             }
+            testData.addScetion(sectionInfo)
 
-            self.tableView.adapterData = testData
-            self.tableView.isUsedCacheSize = true
-            self.tableView.reloadData()
-
-
+            self.tableView
+                .adapterData(testData)
+                .reloadData()
         }
     }
 

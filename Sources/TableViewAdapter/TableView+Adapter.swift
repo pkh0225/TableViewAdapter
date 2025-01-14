@@ -37,6 +37,12 @@ extension UITableView {
         }
     }
 
+    @discardableResult
+    public func adapterData(_ data: TableViewAdapterData) -> Self {
+        self.adapterData = data
+        return self
+    }
+
     public var scrollViewDelegate: UIScrollViewDelegate? {
         get {
             return self.adapter.scrollViewDelegate
