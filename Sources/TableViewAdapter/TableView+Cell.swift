@@ -7,15 +7,6 @@
 
 import UIKit
 
-@MainActor
-class CacheManager {
-    static var cache: NSCache<NSString, UINib> = {
-        var c = NSCache<NSString, UINib>()
-        c.countLimit = 500
-        return c
-    }()
-}
-
 func isXibFileExists(_ fileName: String, bundle: Bundle?) -> Bool {
     var aBundle = Bundle.main
     if let bundle {
@@ -94,7 +85,7 @@ extension UITableView {
             else {
 
                 if let bundle {
-                    register(getNib(className: Class.className, bundle: bundle), forCellReuseIdentifier: Class.className)
+                    register(UINib(nibName: Class.className, bundle: bundle), forCellReuseIdentifier: Class.className)
                 }
                 else {
                     register(Class, forCellReuseIdentifier: Class.className)
@@ -112,7 +103,7 @@ extension UITableView {
         }
         else {
             if let bundle {
-                register(getNib(className: Class.className, bundle: bundle), forCellReuseIdentifier: withReuseIdentifier)
+                register(UINib(nibName: Class.className, bundle: bundle), forCellReuseIdentifier: withReuseIdentifier)
             }
             else {
                 register(Class, forCellReuseIdentifier: withReuseIdentifier)
@@ -130,7 +121,7 @@ extension UITableView {
             }
             else {
                 if let bundle {
-                    register(getNib(className: Class.className, bundle: bundle), forHeaderFooterViewReuseIdentifier: Class.className)
+                    register(UINib(nibName: Class.className, bundle: bundle), forHeaderFooterViewReuseIdentifier: Class.className)
                 }
                 else {
                     register(Class, forHeaderFooterViewReuseIdentifier: Class.className)
@@ -148,7 +139,7 @@ extension UITableView {
         }
         else {
             if let bundle {
-                register(getNib(className: Class.className, bundle: bundle), forHeaderFooterViewReuseIdentifier: withReuseIdentifier)
+                register(UINib(nibName: Class.className, bundle: bundle), forHeaderFooterViewReuseIdentifier: withReuseIdentifier)
             }
             else {
                 register(Class, forHeaderFooterViewReuseIdentifier: withReuseIdentifier)
@@ -166,7 +157,7 @@ extension UITableView {
             }
             else {
                 if let bundle {
-                    register(getNib(className: Class.className, bundle: bundle), forHeaderFooterViewReuseIdentifier: Class.className)
+                    register(UINib(nibName: Class.className, bundle: bundle), forHeaderFooterViewReuseIdentifier: Class.className)
                 }
                 else {
                     register(Class, forHeaderFooterViewReuseIdentifier: Class.className)
@@ -184,7 +175,7 @@ extension UITableView {
         }
         else {
             if let bundle {
-                register(getNib(className: Class.className, bundle: bundle), forHeaderFooterViewReuseIdentifier: withReuseIdentifier)
+                register(UINib(nibName: Class.className, bundle: bundle), forHeaderFooterViewReuseIdentifier: withReuseIdentifier)
             }
             else {
                 register(Class, forHeaderFooterViewReuseIdentifier: withReuseIdentifier)
@@ -192,48 +183,38 @@ extension UITableView {
         }
     }
 
-    private func getNib(className: String, bundle: Bundle? = nil) -> UINib {
-        if let nib = CacheManager.cache.object(forKey: className as NSString) {
-            return nib
-        }
-
-        let nib = UINib(nibName: className, bundle: bundle)
-        CacheManager.cache.setObject(nib, forKey: className as NSString)
-        return nib
-    }
-
     public func registerNibCell(_ Classs: UITableViewCell.Type..., bundle: Bundle? = nil) {
         Classs.forEach { (Class: UITableViewCell.Type) in
-            register(getNib(className: Class.className, bundle: bundle), forCellReuseIdentifier: Class.className)
+            register(UINib(nibName: Class.className, bundle: bundle), forCellReuseIdentifier: Class.className)
         }
     }
 
     public func registerNibCell(Class: UITableViewCell.Type, withReuseIdentifier: String, bundle: Bundle? = nil) {
-        register(getNib(className: Class.className, bundle: bundle), forCellReuseIdentifier: withReuseIdentifier)
+        register(UINib(nibName: Class.className, bundle: bundle), forCellReuseIdentifier: withReuseIdentifier)
     }
 
     public func registerNibCellHeader(_ Classs: UITableViewHeaderFooterView.Type..., bundle: Bundle? = nil) {
         Classs.forEach { (Class: UITableViewHeaderFooterView.Type) in
-            register(getNib(className: Class.className, bundle: bundle), forHeaderFooterViewReuseIdentifier: Class.className)
+            register(UINib(nibName: Class.className, bundle: bundle), forHeaderFooterViewReuseIdentifier: Class.className)
         }
     }
 
     public func registerNibCellHeader(Class: UITableViewHeaderFooterView.Type, withReuseIdentifier: String, bundle: Bundle? = nil) {
-        register(getNib(className: Class.className, bundle: bundle), forHeaderFooterViewReuseIdentifier: withReuseIdentifier)
+        register(UINib(nibName: Class.className, bundle: bundle), forHeaderFooterViewReuseIdentifier: withReuseIdentifier)
     }
 
     public func registerNibCellFooter(_ Classs: UITableViewHeaderFooterView.Type..., bundle: Bundle? = nil) {
         Classs.forEach { (Class: UITableViewHeaderFooterView.Type) in
-            register(getNib(className: Class.className, bundle: bundle), forHeaderFooterViewReuseIdentifier: Class.className)
+            register(UINib(nibName: Class.className, bundle: bundle), forHeaderFooterViewReuseIdentifier: Class.className)
         }
     }
 
     public func registerNibCellFooter(Class: UITableViewHeaderFooterView.Type, withReuseIdentifier: String, bundle: Bundle? = nil) {
-        register(getNib(className: Class.className, bundle: bundle), forHeaderFooterViewReuseIdentifier: withReuseIdentifier)
+        register(UINib(nibName: Class.className, bundle: bundle), forHeaderFooterViewReuseIdentifier: withReuseIdentifier)
     }
 
     public func registerCustomKindReusableView(_ Class: UITableViewHeaderFooterView.Type, _ Kind: String, _ identifier: String, bundle: Bundle? = nil) {
-        register(getNib(className: Class.className, bundle: bundle), forHeaderFooterViewReuseIdentifier: identifier)
+        register(UINib(nibName: Class.className, bundle: bundle), forHeaderFooterViewReuseIdentifier: identifier)
     }
 
     public func dequeueReusableCell<T: UITableViewCell>(_ Class: T.Type, for indexPath: IndexPath) -> T {
