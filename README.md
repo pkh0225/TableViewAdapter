@@ -14,7 +14,7 @@
 <br>
 
 ### sample data set
-```
+```swift
             
         let testData = TableViewAdapterData()
         for i in 0...10 {
